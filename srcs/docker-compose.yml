@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  postgres:
+    env_file:
+      - .env
+    image: postgres:15.3
+    # ports:
+    #   - "5432:5432"
+    container_name: postgres
+    restart: always
+    networks: [ pong_net ]
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+  nestjs:
+    env_file:
+      - .env
+    build:
+      context: ./nestjs
+      dockerfile: Dockerfile
+    container_name: nestjs
+    restart: always
+    networks: [ pong_net ]
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./nestjs:/app
+  nextjs:
+    env_file:
+      - .env
+    build:
+      context: ./nextjs
+      dockerfile: Dockerfile
+    container_name: nextjs
+    restart: always
+    networks: [ pong_net ]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nextjs:/app
+volumes:
+  db-volume:
+networks:
+  pong_net:
+    driver: bridge

@@ -1,0 +1,118 @@
+# ft_transcendence Project README
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Setting up Environment Variables](#setting-up-environment-variables)
+   - [Running the Project](#running-the-project)
+3. [Makefile](#makefile)
+4. [Docker Compose](#docker-compose)
+5. [Security Concerns](#security-concerns)
+6. [Project Structure](#project-structure)
+
+---
+
+## Introduction
+
+**ft_transcendence** is a project designed to challenge your skills and knowledge in the field of web development. The project's main goal is to create a website that hosts a Pong contest, allowing users to play Pong with others in real-time. The website will feature a user-friendly interface, a chat system, and real-time multiplayer online games.
+
+## Getting Started
+
+### Prerequisites
+
+Before you can run the project, ensure you have the following prerequisites installed on your system:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+### Setting up Environment Variables
+
+Create a `.env` file at the root of your Docker Compose directory with the following environment variables. Replace the values with your own configurations as needed:
+
+```env
+DOMAIN_NAME=transcendence.42.fr
+POSTGRES_PASSWORD=pgpw
+PGPASSWORD=postgres_pwd
+PGDATABASE=postgres
+PGUSER=postgres
+PGHOST=postgres
+PGPORT=5432
+
+NESTJS_PORT=3001
+HOST=localhost
+PORT=3000
+
+JWT_ACCESS_TOKEN_SECRET=
+JWT_ACCESS_TOKEN_EXPIRATION_TIME=6000
+JWT_REFRESH_TOKEN_SECRET=
+JWT_REFRESH_TOKEN_EXPIRATION_TIME=18000
+INTRA_AUTH_URL=https://api.intra.42.fr/oauth/authorize
+INTRA_TOKEN_URL=https://api.intra.42.fr/oauth/token
+TWOFA_APP_NAME=google
+DEFAULT_AVATAR_URL=https://rocket-league.com/content/media/items/avatar/220px/1b16f7679a1638965994.png
+
+# Local / TRANSCENDENCE_LOCAL
+NEXT_PUBLIC_INTRA_SIGNURL=
+INTRA_CALLBACK_URL=http://localhost:3000/api/auth
+INTRA_SECRET=
+INTRA_CLIENT_ID=
+```
+
+For the last three environment variables, you must create an API within the 42 Intranet, set up the callback URL, and fill in the corresponding values.
+
+### Running the Project
+
+To run the project, you can use the provided Makefile and Docker Compose configuration.
+
+Build and start the project with Docker Compose:
+
+```bash
+make
+```
+
+The project should now be running, and you can access it through your web browser.
+
+## Makefile
+
+The project includes a Makefile to streamline common development tasks. Some useful commands include:
+
+- `make run`: Starts the project.
+- `make stop`: Stops the project.
+- `make clean`: Stops the project, removes volumes and containers, and prunes Docker system.
+- `make fclean`: Removes all project-related resources.
+- `make re`: Cleans and restarts the project.
+
+## Docker Compose
+
+The `docker-compose.yml` file defines the project's services, including:
+
+- PostgreSQL database
+- NestJS backend server
+- Next.js frontend server
+
+You can configure the services in this file to meet your project's requirements.
+
+## Security Concerns
+
+The project has several security considerations, including:
+
+- Passwords stored in the database are hashed.
+- Protection against SQL injections.
+- Server-side validation for forms and user input.
+- Storing credentials and sensitive data in a `.env` file to keep them secure.
+
+Please ensure that you follow best practices for security when working on this project.
+
+## Project Structure
+
+The project structure is organized into the following parts:
+
+- **Mandatory Part**: Contains the core functionality and requirements of the project.
+- **Preamble**: Provides introductory information about the project.
+- **Submission and Peer-Evaluation**: Instructions for submitting your work for evaluation.
+
+For more detailed information about each part of the project, please refer to the project documentation.
+
+Enjoy working on the **ft_transcendence** project and good luck with your web development journey!
